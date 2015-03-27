@@ -1,7 +1,7 @@
 FROM ubuntu:14.04.2
 MAINTAINER Allan MacGregor <amacgregor@demacmedia.com>
 
-# Install the base packages we will need 
+# Install the base packages we will need
 RUN apt-get update
 RUN apt-get install -y \
     wget \
@@ -47,9 +47,9 @@ RUN apt-get install -y \
     libapache2-mod-fcgid
 
 # Download a copy of cweiske/phpfarm repo
-RUN git clone https://github.com/amacgregor/phpfarm.git /opt/phpfarm
+RUN git clone git://github.com/amacgregor/phpfarm.git /opt/phpfarm
 
-# Copy the custom configuration files 
+# Copy the custom configuration files
 COPY config/phpfarm/src /opt/phpfarm/src/
 
 # Compile, then delete sources (saves space)
