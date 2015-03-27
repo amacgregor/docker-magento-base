@@ -1,0 +1,32 @@
+<Macro VHost-PHP5.3 $host $ip $port $dir>
+<VirtualHost $ip:$port>
+	ServerAdmin webmaster@localhost
+	ServerName $host
+	ServerAlias www.$host media.$host js.$host css.$host static.$host
+	
+	# PHP proxy specifications
+	<Proxy fcgi://127.0.0.1:9001>
+	  ProxySet timeout=1800
+	</Proxy>
+
+	ProxyPassMatch ^/(.*\.php(/.*)?)$ fcgi://127.0.0.1:9001/srv/www/$dir/public_html/$1
+	DocumentRoot /srv/www/$dir/public_html
+
+    <Directory />
+    	Options FollowSymLinks
+    	AllowOverride None
+    	Require all granted
+    </Directory>
+
+    <Directory /srv/www/$dir/public_html>
+    	AllowOverride None
+	    Require all granted
+    </Directory>
+
+	Include /srv/www/$dir/public_html/.htaccess-combined
+
+    ErrorLog /var/log/apache2/error.log
+    CustomLog /var/log/apache2/access.log combined
+
+</VirtualHost>
+</Macro>

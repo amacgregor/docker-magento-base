@@ -1,2 +1,13 @@
-# docker-magento-base
-Docker image with the base Magento stack for development (Apache2.4, PHP-FPM, PHPfarm, Xdebug)
+# Magento Docker Development Image
+
+## Features
+- Multiple versions of PHPFpm
+- Modern Stack (PHPfpm, Apache2.4)
+- Use of macros for easy setup
+
+
+### Reference
+docker build -t demac/magento .
+docker run -t -i demac/magento
+docker exec -it [container-id] bash
+docker run -v /host:/path -t -i demac/docker-example
